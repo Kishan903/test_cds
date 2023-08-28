@@ -166,7 +166,7 @@ LOGGING = {
 }
 
 CRONJOBS = [
-    ('* * * * *', 'word_count.cron.count_values'),
+    ('* * * * *', 'word_count.cron.count_values', '>> ' + os.path.join(BASE_DIR,'search_result.log' + ' 2>&1 ')),
     ('* * * * *', 'word_count.cron.add_data_to_file_1'),
     ('* * * * *', 'word_count.cron.add_data_to_file_2')
 ]
