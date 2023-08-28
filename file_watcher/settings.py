@@ -166,7 +166,7 @@ LOGGING = {
 }
 
 CRONJOBS = [
-    ('* * * * *', 'word_count.cron.my_scheduled_job'),
+    ('* * * * *', 'word_count.cron.count_values'),
     ('* * * * *', 'word_count.cron.add_data_to_file_1'),
     ('* * * * *', 'word_count.cron.add_data_to_file_2')
 ]
