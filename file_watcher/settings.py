@@ -17,7 +17,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+WATCHER_DIR = os.path.join(BASE_DIR, "space")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_crontab",
+    "word_count"
 ]
 
 MIDDLEWARE = [
@@ -124,16 +126,29 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+FORMAT = "{levelname} {asctime} - {message}"
+FORMAT = "{message}"
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": FORMAT,
+            "style": "{",
+        },
+    },
     "handlers": {
         "file": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "search_results.log",
+            "filename": "django.log",
         },
+        "watcher_info": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "search_results.log",
+        }
     },
     "loggers": {
         "django": {
@@ -141,5 +156,16 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
+        "watcher_log": {
+            "handlers": ["watcher_info"],
+            "level": "DEBUG",
+            "propagate": True,
+        }
+        
     },
 }
+
+CRONJOBS = [
+    ('* * * * *', 'word_count.cron.my_scheduled_job')
+]
+
