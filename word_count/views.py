@@ -5,14 +5,14 @@ import logging
 import random
 import os
 
-from utils import add_word
+from utils.add_word import add_words
 import os
 watcher_log = logging.getLogger("watcher_log")
 
 # Create your views here.
 def test(request):
-    add_word("file1.txt", os.environ.get("word", "CDN"))
-    
+    add_words("file1.txt", os.environ.get("word", "CDS"))
+
     # file_names = ["file_1.txt", "file_2.txt"] 
     # file_name = random.choice(file_names)
     # with open(os.path.join(settings.WATCHER_DIR, file_name), "w") as file1:

@@ -2,7 +2,6 @@ import os
 import random
 import string
 
-
 def add_words(file_name, cdn_value):
     word_to_write = random.randint(0, 50) 
     with open(file_name, "a+") as file:
