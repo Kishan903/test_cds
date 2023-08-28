@@ -13,11 +13,11 @@ def count_values():
     for (dirpath, dirnames, filenames) in w: 
         
         for filename in filenames:
-            count = count_words(dirpath, filename, "any")
+            value = os.environ.get("DEFAULT_VALUE", "CDS")
+            count = count_words(dirpath, filename, value)
             if count > 0:
                 message = os.path.join(dirpath, filename) + " - " + str(count)
-                print("ok")
-                watcher_log.info(message)
+                watcher_log.error(message)
 
 def add_data_to_file_1():
     value = os.environ.get("DEFAULT_VALUE", "CDS")
